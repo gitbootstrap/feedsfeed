@@ -1,6 +1,4 @@
-<?php 
-
-header('Content-Type: application/rss+xml; charset=UTF-8');
+<?php
 
 require_once('inc/autoloader.php');
 require_once('config.php');

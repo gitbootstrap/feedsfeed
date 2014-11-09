@@ -1,0 +1,11 @@
+{
+    "name": "feedsfeed",
+    "version": "0.0.1",
+    "homepage": "https://github.com/gitbootstrap/feedsfeed",
+    "private": true,
+    "devDependencies": {
+      "apache-server-configs": "^2.11.0",
+      "del":                   "^0.1.3",
+      "gulp":                  "^3.8.8"
+    }
+}

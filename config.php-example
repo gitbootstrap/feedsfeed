@@ -1,0 +1,36 @@
+<?php
+
+// Title of your feed
+$feed_title = "My RSS feed";
+
+// Description for your feed
+$feed_desc = "This is my awesome RSS feed";
+
+// Website of your feed
+$feed_home = "http://";
+
+// Link to your feed
+$feed_link = "http://";
+
+// Link to JSON file containing a list of feeds  
+$feed_source = "feeds.json";
+
+// Default channel for your feed (as specified in $feed_source)
+$feed_channel = "commits";
+
+// Timezone for your feed (see http://php.net/manual/en/timezones.php)
+$feed_timezone = "Europe/London";
+
+// The year your feed was launched, displayed in the <copyright>-tag
+$feed_launch_year = "2014";
+
+// File name of your feed
+$feed_filename = "feed.xml";
+
+// Maximum number of items displayed in your feed
+$feed_max_items = 24;
+
+// Cache duration for previously fetched items
+$feed_cache_duration = 3600;
+
+?>

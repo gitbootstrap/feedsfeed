@@ -17,24 +17,26 @@ All settings can be made inside `config.php`
 
 By default, the feeds are loaded from `feeds.json` (name and location can be modified). Here's a look at what this file can look like.
 
-    [  
-      {  
-        "name":    "Bootstrap",
-        "website": "https://getbootstrap.com",
-        "channel": {
-          "commits":  "https://github.com/twbs/bootstrap/master.atom",
-          "releases": "https://github.com/twbs/bootstrap/releases.atom"
-        }
-      },
-      {  
-        "name":    "Font Awesome",
-        "website": "http://fontawesome.io"
-        "channel": {
-          "commits": "https://github.com/FortAwesome/Font-Awesome/commits/master.atom",
-          "releases": "https://github.com/FortAwesome/Font-Awesome/releases.atom"
-        }
-      },
-    ]
+```json
+[  
+  {  
+    "name":    "Bootstrap",
+    "website": "https://getbootstrap.com",
+    "channel": {
+      "commits":  "https://github.com/twbs/bootstrap/master.atom",
+      "releases": "https://github.com/twbs/bootstrap/releases.atom"
+    }
+  },
+  {  
+    "name":    "Font Awesome",
+    "website": "http://fontawesome.io"
+    "channel": {
+      "commits": "https://github.com/FortAwesome/Font-Awesome/commits/master.atom",
+      "releases": "https://github.com/FortAwesome/Font-Awesome/releases.atom"
+    }
+  },
+]
+```
 
 The important key is `channel`, which can contain any number of sub-keys. The default channel is defined in `config.php`.
 

@@ -31,7 +31,7 @@ By default, the feeds are loaded from `feeds.json` (name and location can be mod
     "name":    "Font Awesome",
     "website": "http://fontawesome.io"
     "channel": {
-      "commits": "https://github.com/FortAwesome/Font-Awesome/commits/master.atom",
+      "commits":  "https://github.com/FortAwesome/Font-Awesome/commits/master.atom",
       "releases": "https://github.com/FortAwesome/Font-Awesome/releases.atom"
     }
   },

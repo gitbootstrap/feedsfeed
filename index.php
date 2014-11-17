@@ -78,16 +78,15 @@ if ($success) {
 
     // Normalize link
     if (preg_match('/\Ahttps?:\/\/github.com/', $permalink)) {
-      $link = preg_replace('/\/(commits|releases)\/(.*)\Z/', null, $permalink );
+      $link = preg_replace('/\/(commit|releases)\/(.*)\Z/', null, $permalink );
     } else if (preg_match('/\Ahttps?:\/\/bitbucket.org/', $permalink)) {
       $link = preg_replace('/\/commits\/(.*)\Z/', null, $permalink );
     } else if (preg_match('/\Ahttps?:\/\/plugins.trac.wordpress.org/', $permalink)) {
       $link = preg_replace('/\/changeset\/([0-9]+\/)/', '/log/', $permalink );
-      $link .= "?limit=100&mode=stop_on_copy&format=rss";
+      $link .= "?format=rss&limit=10&mode=stop_on_copy";
     }
 
     $key = recursive_array_search($link, $sources);
-    
 
     if($key == null) {
       continue;
@@ -98,7 +97,7 @@ if ($success) {
 
 $items[$sort_date] = <<< END
 \n    <item>
-      <title>$project $title</title>
+      <title>$project: $title</title>
       <link>$permalink</link>
       <guid>$permalink</guid>
       <pubDate>$pub_date</pubDate>

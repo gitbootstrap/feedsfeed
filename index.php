@@ -95,9 +95,8 @@ if ($success) {
     $item_pub_date = $item->get_date('D, d M Y H:i:s T');
     $sort_date     = $item->get_date('U');
 
-    $item_title = $feed_item_title;
-    $item_title = str_replace("%project%", $item_project, $item_title);
-    $item_title = str_replace("%title%", $item_title, $item_title);
+    $temp_title = str_replace("%project%", $item_project, $feed_item_title);
+    $item_title = str_replace("%title%", $item_title, $temp_title);
 
 $items[$sort_date] = <<< END
 \n    <item>
@@ -129,17 +128,19 @@ $xml .=  <<< END
 </rss>
 END;
 
+echo "<h1>$feed_title</h1>".PHP_EOL;
+
 if (strlen($xml) > 0) {
   file_put_contents($feed_filename, $xml, LOCK_EX);
 } else {
-  echo "Error: No items in feed";
+  echo "<p>Error: No items in feed</p>";
   exit;
 }
 
 if(file_exists($feed_filename)) {
-  echo "File <a href=\"$feed_filename\">$feed_filename</a> exists";
+  echo "<p>File <a href=\"$feed_filename\">$feed_filename</a> exists</p>";
 } else {
-  echo "Error: Could not create <code>$feed_filename</code>";
+  echo "<p>Error: Could not create <code>$feed_filename</code></p>";
 }
 
 ?>

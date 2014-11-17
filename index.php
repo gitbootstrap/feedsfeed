@@ -72,17 +72,17 @@ $items = array();
 if ($success) {
   foreach($feed->get_items() as $item) {
 
-    $title = $item->get_title();
-    $permalink = $item->get_permalink();
+    $item_title = $item->get_title();
+    $item_permalink = $item->get_permalink();
     $link = $item->get_link();
 
     // Normalize link
-    if (preg_match('/\Ahttps?:\/\/github.com/', $permalink)) {
-      $link = preg_replace('/\/(commit|releases)\/(.*)\Z/', null, $permalink );
-    } else if (preg_match('/\Ahttps?:\/\/bitbucket.org/', $permalink)) {
-      $link = preg_replace('/\/commits\/(.*)\Z/', null, $permalink );
-    } else if (preg_match('/\Ahttps?:\/\/plugins.trac.wordpress.org/', $permalink)) {
-      $link = preg_replace('/\/changeset\/([0-9]+\/)/', '/log/', $permalink );
+    if (preg_match('/\Ahttps?:\/\/github.com/', $item_permalink)) {
+      $link = preg_replace('/\/(commit|releases)\/(.*)\Z/', null, $item_permalink );
+    } else if (preg_match('/\Ahttps?:\/\/bitbucket.org/', $item_permalink)) {
+      $link = preg_replace('/\/commits\/(.*)\Z/', null, $item_permalink );
+    } else if (preg_match('/\Ahttps?:\/\/plugins.trac.wordpress.org/', $item_permalink)) {
+      $link = preg_replace('/\/changeset\/([0-9]+\/)/', '/log/', $item_permalink );
       $link .= "?format=rss&limit=10&mode=stop_on_copy";
     }
 
@@ -91,19 +91,20 @@ if ($success) {
     if($key == null) {
       continue;
     }
-    $project  = $sources[$key]["name"];
-    $pub_date = $item->get_date('D, d M Y H:i:s T');
-    $sort_date = $item->get_date('U');
+    $item_project  = $sources[$key]["name"];
+    $item_pub_date = $item->get_date('D, d M Y H:i:s T');
+    $sort_date     = $item->get_date('U');
 
-    $feed_item_title = str_replace("%project%", $project, $feed_item_title);
-    $feed_item_title = str_replace("%title%", $title, $feed_item_title);
+    $item_title = $feed_item_title;
+    $item_title = str_replace("%project%", $item_project, $item_title);
+    $item_title = str_replace("%title%", $item_title, $item_title);
 
 $items[$sort_date] = <<< END
 \n    <item>
-      <title>$feed_item_title</title>
-      <link>$permalink</link>
-      <guid>$permalink</guid>
-      <pubDate>$pub_date</pubDate>
+      <title>$item_title</title>
+      <link>$item_permalink</link>
+      <guid>$item_permalink</guid>
+      <pubDate>$item_pub_date</pubDate>
     </item>
 END;
   }

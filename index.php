@@ -1,4 +1,6 @@
-<?php
+<?php 
+
+header('Content-Type: application/rss+xml; charset=UTF-8');
 
 require_once('inc/autoloader.php');
 require_once('config.php');
@@ -65,10 +67,10 @@ $feed->get_raw_data(isset($_GET['xmldump']) ? true : false);
 $success = $feed->init();
 $feed->handle_content_type();
 
+$items = array();
+
 if ($success) {
-  $itemlimit=0;
   foreach($feed->get_items() as $item) {
-    if ($itemlimit==$feed_max_items) { break; }
 
     $title = $item->get_title();
     $permalink = $item->get_permalink();
@@ -92,8 +94,9 @@ if ($success) {
     }
     $project  = $sources[$key]["name"];
     $pub_date = $item->get_date('D, d M Y H:i:s T');
+    $sort_date = $item->get_date('U');
 
-$xml .= <<< END
+$items[$sort_date] = <<< END
 \n    <item>
       <title>$project $title</title>
       <link>$permalink</link>
@@ -101,7 +104,20 @@ $xml .= <<< END
       <pubDate>$pub_date</pubDate>
     </item>
 END;
-    $itemlimit = $itemlimit + 1;
+  }
+
+  // sort keys by time
+  krsort($items);
+
+  $i==0;
+
+  foreach($items as $item) {
+    if ($i==$feed_max_items) {
+      break;
+    } else {
+      $xml .= $item;
+      $i++;
+    }
   }
 }
 

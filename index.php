@@ -95,9 +95,12 @@ if ($success) {
     $pub_date = $item->get_date('D, d M Y H:i:s T');
     $sort_date = $item->get_date('U');
 
+    $feed_item_title = str_replace("%project%", $project, $feed_item_title);
+    $feed_item_title = str_replace("%title%", $title, $feed_item_title);
+
 $items[$sort_date] = <<< END
 \n    <item>
-      <title>$project: $title</title>
+      <title>$feed_item_title</title>
       <link>$permalink</link>
       <guid>$permalink</guid>
       <pubDate>$pub_date</pubDate>

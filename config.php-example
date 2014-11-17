@@ -33,4 +33,7 @@ $feed_max_items = 24;
 // Cache duration for previously fetched items
 $feed_cache_duration = 3600;
 
+// Define what should be defined as title for each item, can contain %project% or %title%
+$feed_item_title = "%project%: %title%";
+
 ?>

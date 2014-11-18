@@ -98,7 +98,7 @@ if ($success) {
     $temp_title = str_replace("%project%", $item_project, $feed_item_title);
     $item_title = str_replace("%title%", $item_title, $temp_title);
 
-$items[$sort_date] = <<< END
+$xml .= <<< END
 \n    <item>
       <title>$item_title</title>
       <link>$item_permalink</link>
@@ -106,20 +106,6 @@ $items[$sort_date] = <<< END
       <pubDate>$item_pub_date</pubDate>
     </item>
 END;
-  }
-
-  // sort keys by time
-  krsort($items);
-
-  $i==0;
-
-  foreach($items as $item) {
-    if ($i==$feed_max_items) {
-      break;
-    } else {
-      $xml .= $item;
-      $i++;
-    }
   }
 }
 

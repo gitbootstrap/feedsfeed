@@ -1,6 +1,6 @@
 {
     "name": "feedsfeed",
-    "version": "0.0.1",
+    "version": "1.0.1",
     "keywords": ["bootstrap", "feeds", "rss"],
     "homepage": "https://github.com/gitbootstrap/feedsfeed",
     "public": false,

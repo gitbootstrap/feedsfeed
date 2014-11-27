@@ -16,6 +16,8 @@ function recursive_array_search($needle,$haystack) {
     return false;
 }
 
+$start_time = microtime(true);
+
 $json    = file_get_contents($feed_source); 
 $sources = json_decode($json, true);
 
@@ -128,5 +130,9 @@ if(file_exists($feed_filename)) {
 } else {
   echo "<p>Error: Could not create <code>$feed_filename</code></p>";
 }
+
+$end_time = microtime(true);
+$time = $end_time - $start_time;
+echo "<p><small>Processed in " . abs($time) . " seconds</small></p>";
 
 ?>

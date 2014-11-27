@@ -126,7 +126,7 @@ if (strlen($xml) > 0) {
 }
 
 if(file_exists($feed_filename)) {
-  echo "<p>File <a href=\"$feed_filename\">$feed_filename</a> exists</p>";
+  echo "<p>File <a href=\"$feed_filename\">$feed_filename</a> was created</p>";
 } else {
   echo "<p>Error: Could not create <code>$feed_filename</code></p>";
 }

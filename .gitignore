@@ -1,6 +1,7 @@
 .htaccess
 cache/
 composer.lock
+feed.xml
 inc/
 node_modules/
 npm-debug.log

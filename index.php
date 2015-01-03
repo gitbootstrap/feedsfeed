@@ -38,23 +38,14 @@ if(date("Y") == $feed_launch_year){
    $copyright = "Copyright " . $feed_launch_year."-".date("Y");
 }
 
-$xml = <<< END
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" 
-  xmlns:atom="http://www.w3.org/2005/Atom"
-  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
-  xmlns:dc="http://purl.org/dc/elements/1.1/"
-  xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule"
->
-  <channel>
-    <title>$feed_title</title>
-    <atom:link href="$feed_link" rel="self" type="application/rss+xml" />
-    <link>$feed_home</link>
-    <description>$feed_desc</description>
-    <language>$feed_language</language>
-    <copyright>$copyright</copyright>
-    <creativeCommons:license>http://creativecommons.org/publicdomain/zero/1.0/legalcode</creativeCommons:license>
-END;
+$xml  = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:creativeCommons=\"http://backend.userland.com/creativeCommonsRssModule\"><channel>";
+$xml .= "<title>$feed_title</title>";
+$xml .= "<atom:link href=\"$feed_link\" rel=\"self\" type=\"application/rss+xml\" />";
+$xml .= "<link>$feed_home</link>";
+$xml .= "<description>$feed_desc</description>";
+$xml .= "<language>$feed_language</language>";
+$xml .= "<copyright>$copyright</copyright>";
+$xml .= "<creativeCommons:license>http://creativecommons.org/publicdomain/zero/1.0/legalcode</creativeCommons:license>";
  
 date_default_timezone_set($feed_timezone);
 $feed = new SimplePie();
@@ -100,21 +91,15 @@ if ($success) {
     $temp_title = str_replace("%project%", $item_project, $feed_item_title);
     $item_title = str_replace("%title%", $item_title, $temp_title);
 
-$xml .= <<< END
-\n    <item>
-      <title>$item_title</title>
-      <link>$item_permalink</link>
-      <guid>$item_permalink</guid>
-      <pubDate>$item_pub_date</pubDate>
-    </item>
-END;
+    $xml .= "<item><title>$item_title</title>";
+    $xml .= "<link>$item_permalink</link>";
+    $xml .= "<guid>$item_permalink</guid>";
+    $xml .= "<pubDate>$item_pub_date</pubDate>";
+    $xml .= "</item>";
   }
 }
 
-$xml .=  <<< END
-\n</channel>
-</rss>
-END;
+$xml .= "</channel></rss>";
 
 echo "<h1>$feed_title</h1>".PHP_EOL;
 
@@ -126,7 +111,7 @@ if (strlen($xml) > 0) {
 }
 
 if(file_exists($feed_filename)) {
-  echo "<p>File <a href=\"$feed_filename\">$feed_filename</a> was created</p>";
+  echo "<p>File <a href=\"$feed_filename\">$feed_filename</a> exists</p>";
 } else {
   echo "<p>Error: Could not create <code>$feed_filename</code></p>";
 }
